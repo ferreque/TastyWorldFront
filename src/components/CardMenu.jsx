@@ -3,9 +3,9 @@ import Swal from "sweetalert2";
 
 const CardMenu = ({ menus, setContadorProductosFlag }) => {
   let lista = JSON.parse(localStorage.getItem("carrito")) || [];
-  const agregarACarrito = async (id) => {
+  const agregarACarrito = async (prod) => {
     setContadorProductosFlag(true);
-    lista.push(id);
+    lista.push(prod);
     localStorage.setItem("carrito", JSON.stringify(lista));
     Swal.fire({
       title: "Producto agregado",
@@ -52,7 +52,7 @@ const CardMenu = ({ menus, setContadorProductosFlag }) => {
                   <h5>${menu.precio}</h5>
                   <button
                     className="btn btn-info botonAgrBa"
-                    onClick={() => agregarACarrito(menu._id)}
+                    onClick={() => agregarACarrito(menu)}
                   >
                     Agregar +
                   </button>

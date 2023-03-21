@@ -1,35 +1,12 @@
 import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import CardFin from "../components/CardFin";
-import { getProducto } from "../helpers/productos";
 import Loader from "react-loader-spinner";
 
 const Carrito = () => {
-  let pedido = [];
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  const [pedidos, setPedidos] = useState([]);
-  const [eco, setEco] = useState(true);
+  let pedido = JSON.parse(localStorage.getItem("carrito")) || [];
+  const [pedidos, setPedidos] = useState(pedido);
   const [loadVisible, setLoadVisible] = useState(true);
-
-  const token =
-    JSON.parse(localStorage.getItem("auth")) &&
-    JSON.parse(localStorage.getItem("auth")).token;
-
-  useEffect(() => {
-    cargarCarrito(carrito);
-  }, []);
-
-  const cargarCarrito = (c) => {
-    c.forEach((producto) => {
-      getProducto(producto, token).then((respuesta) => {
-        pedido.push(respuesta.producto);
-      });
-    });
-    setTimeout(function () {
-      setPedidos(pedido);
-      setLoadVisible(false);
-    }, 500);
-  };
 
   return (
     <Container className="tituloPag inicioBackground text-center min-height mt-5 pt-5">
@@ -41,13 +18,15 @@ const Carrito = () => {
         width="100"
         visible={loadVisible}
       />
-      <CardFin
-        cargarCarrito={cargarCarrito}
-        pedidos={pedidos}
-        eco={eco}
-        setEco={setEco}
-        setPedidos={setPedidos}
-      />
+      {pedidos.length === 0 ? (
+        <h1>NO TIENE NINGUN PRODUCTO EN SU CARRITO</h1>
+      ) : (
+        <CardFin
+          pedidos={pedidos}
+          setPedidos={setPedidos}
+          setLoadVisible={setLoadVisible}
+        />
+      )}
     </Container>
   );
 };

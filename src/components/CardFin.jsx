@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { Form, Card, Container, Button } from "react-bootstrap";
 import { postComandaAdmin } from "../helpers/comandas";
 import { useHistory } from "react-router-dom";
 
-const CardFin = ({ pedidos, setPedidos, cargarCarrito }) => {
+const CardFin = ({ pedidos, setPedidos, cargarCarrito, setLoadVisible }) => {
   const [mesa, setMesa] = useState();
+  useEffect(() => {
+    setLoadVisible(false);
+  }, []);
 
   const token =
     JSON.parse(localStorage.getItem("auth")) &&
@@ -40,7 +43,6 @@ const CardFin = ({ pedidos, setPedidos, cargarCarrito }) => {
           descripcion:
             pedido?.notas || "No se especificaron notas para este pedido",
         };
-        console.log(product);
 
         postComandaAdmin(product, token).then((respuesta) => {
           if (respuesta.errors) {
@@ -59,15 +61,16 @@ const CardFin = ({ pedidos, setPedidos, cargarCarrito }) => {
       localStorage.setItem("carrito", JSON.stringify([]));
     }
   };
+
   const borrarProd = (pedido) => {
     let newCarrito = [];
     pedidos.forEach((element) => {
       if (element.numPlato !== pedido.numPlato) {
-        newCarrito.push(element._id);
+        newCarrito.push(element);
       }
     });
     localStorage.setItem("carrito", JSON.stringify(newCarrito));
-    cargarCarrito(newCarrito);
+    setPedidos(newCarrito);
   };
 
   return (
