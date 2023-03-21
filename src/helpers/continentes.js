@@ -1,5 +1,5 @@
 // const url = "http://localhost:4005/api/continentes";
-const url = "https://vercel.com/ferreque/tasty-world-back/api/continentes";
+const url = "https://tasty-world-back.vercel.app/api/continentes";
 
 export const getContinentes = async (token) => {
   const resp = await fetch(`${url}`, {

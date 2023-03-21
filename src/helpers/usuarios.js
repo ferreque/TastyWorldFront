@@ -1,6 +1,5 @@
-//VER COMO NOMRARON VARIABLES LOS CHICOS Y MODIFICAR
-// const url = "http://localhost:4005";
-const url = "https://vercel.com/ferreque/tasty-world-back";
+//const url = "http://localhost:4005";
+const url = "https://tasty-world-back.vercel.app";
 
 export const usuariosGet = async () => {
   const resp = await fetch(`${url}/api/usuarios`, {

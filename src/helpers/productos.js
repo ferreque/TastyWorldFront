@@ -1,5 +1,5 @@
 // const url = "http://localhost:4005/api/productos";
-const url = "https://vercel.com/ferreque/tasty-world-back/api/productos";
+const url = "https://tasty-world-back.vercel.app/api/productos";
 
 export const getProductos = async (token) => {
   const resp = await fetch(`${url}/all`, {
