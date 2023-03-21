@@ -1,0 +1,458 @@
+:root {
+  --verdeOsc: #36504f;
+  --verdeM: #5e8886;
+  --verdeC: #88b4b2;
+  --salmon: #fdc9a6;
+}
+* {
+  box-sizing: border-box;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+@font-face {
+  font-family: "Gotham";
+  src: url(./assets/fonts/FontsFree-Net-gotham-ultra.ttf);
+}
+.min-height {
+  min-height: 80vh;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url(./assets/fonts/FontsFree-Net-gotham-ultra.ttf);
+}
+
+/* Sección administración */
+.bg {
+  background-color: #36504f;
+}
+
+/* Sección footer */
+.footer-clase {
+  background-color: #36504f;
+  color: white;
+  bottom: 0;
+
+  width: 100%;
+}
+
+.redes {
+  text-decoration: none;
+  color: white;
+}
+
+.redes-nosotros {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.tituloPag {
+  font-family: "Montserrat";
+  color: white;
+  font-weight: 800;
+  text-shadow: 0.08em 0.07em #36504f98;
+}
+
+.inicioBackground {
+  max-width: 100vw;
+  background-color: #36504f98;
+}
+#botonPedStick {
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+}
+#botonPedStick img {
+  width: 70px;
+  height: 70px;
+}
+
+/* /-----------Estilo cards Categorias----------------/ */
+.cardContainC {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-shrink: 1;
+}
+.cardLink {
+  color: var(--verdeOsc);
+  text-align: center;
+  text-decoration: none;
+}
+.cardCatBod {
+  align-content: center;
+}
+
+.cardLink h5 {
+  font-weight: 700;
+  text-decoration: none;
+
+  text-shadow: rgb(155, 154, 154) 0.1em 0.1em 0.2em;
+}
+
+.cardCateg {
+  border-radius: 5%;
+  border: solid 2px var(--verdeOsc);
+  width: 80vw;
+  transition-property: transform;
+  transition-duration: 0.5s;
+}
+
+.cardCateg:hover {
+  transform: scale(1.05);
+  box-shadow: rgb(112, 111, 111) 0.1em 0.2em 0.2em;
+}
+
+.imgC {
+  padding: 5px;
+  border-radius: 6%;
+}
+/* /-----------Estilo cards menu----------------/ */
+.continentBackground {
+  background: linear-gradient(
+      to bottom,
+      rgba(230, 224, 224, 0.8) 0%,
+      rgba(92, 68, 52, 0.8) 100%
+    ),
+    url(https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+
+  background-size: cover;
+  background-color: #5e8886a2;
+}
+.botonAgr {
+  background-color: var(--verdeOsc);
+  color: white;
+  border: none;
+  bottom: 20px;
+  right: 26%;
+}
+.close {
+  background-color: var(--verdeOsc);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 4px 10px;
+}
+.sr-only {
+  display: none;
+}
+
+.botonAgrBa {
+  color: var(--verdeOsc);
+  background-color: white;
+  border: none;
+}
+.wrapper {
+  height: 60vh;
+  width: 90vw;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+.wrapper .card {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  background: #f7ece6;
+  border-radius: 10px;
+  transform: translateY(0deg);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  text-align: center;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+.wrapper:hover > .front-face {
+  transform: rotateY(-180deg);
+}
+.wrapper .card img {
+  max-width: 100%;
+  max-height: 35vh;
+  object-fit: contain;
+  border-radius: 10px;
+  padding: 3px;
+  border-radius: 5%;
+}
+.wrapper .back-face {
+  overflow-y: hidden;
+  display: flex;
+  font-size: 12px;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  transform: rotateY(180deg);
+  object-fit: contain;
+  background-color: var(--verdeM);
+  color: white;
+}
+.wrapper:hover > .back-face {
+  transform: rotateY(0deg);
+}
+.wrapper .back-face img {
+  height: 30%;
+  width: 50%;
+  padding: 3px;
+  margin-top: 10px;
+  border-radius: 20%;
+  background: linear-gradient(
+    to right top,
+    var(--salmon),
+    var(--verdeM),
+    #fcc098,
+    var(--verdeOsc)
+  );
+}
+.wrapper .back-face .info,
+.precioyBot {
+  text-align: center;
+}
+.back-face .info .title {
+  font-size: 18px;
+  font-weight: 500;
+}
+/*tabla scroll*/
+.my-custom-scrollbar {
+  position: relative;
+  height: 200px;
+  overflow: auto;
+}
+.table-wrapper-scroll-y {
+  display: block;
+}
+
+/* /----Estilo Carrusel continentes------/ */
+.cardConti {
+  box-sizing: border-box;
+  border-radius: 3%;
+  width: 100%;
+  height: 40vh;
+  display: block;
+  object-fit: fill;
+  justify-content: center;
+  border-radius: 100%;
+  overflow: hidden;
+  border: solid 2px var(--verdeOsc);
+  transition-property: transform;
+  transition-duration: 0.5s;
+}
+.cardCont:hover {
+  transform: scale(1.03);
+}
+
+.cardCont {
+  max-height: 70%;
+  padding: 20px;
+  position: absolute;
+  top: -35px;
+}
+
+#imgCon {
+  object-fit: fill;
+  box-sizing: border-box;
+  width: 50vw;
+  padding: 5px;
+  border-radius: 6%;
+}
+
+.cardContain {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.carruselCont {
+  justify-content: center;
+  display: flex;
+  flex-grow: 0;
+  justify-content: space-evenly;
+}
+
+/* /LOGIN/ */
+.login-bg {
+  background-color: var(--verdeM);
+}
+.login-card {
+  background-color: var(--verdeOsc);
+  border-radius: 10px;
+  padding: 5px 30px;
+  font-family: "Montserrat";
+}
+.iniciaSesion {
+  text-shadow: 0.05em 0.07em var(--verdeM);
+  font-size: 1.4rem;
+  color: white;
+  font-family: "Gotham" !important;
+}
+.login-regis {
+  text-decoration: none;
+  color: white;
+}
+.login-regis:hover {
+  text-decoration: none;
+  color: var(--verdeM);
+}
+.login-btn {
+  background-color: var(--verdeM);
+  border: none;
+}
+.login-btn:hover {
+  background-color: rgb(167, 211, 164);
+  color: #273837;
+  border: none;
+  text-shadow: 0.05em 0.07em var(--verdeM);
+}
+/*ERROR page*/
+.body {
+  background: linear-gradient(
+      to bottom,
+      rgba(230, 224, 224, 0.8) 0%,
+      rgba(92, 68, 52, 0.8) 100%
+    ),
+    url(https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.btnHome {
+  background-color: var(--verdeOsc);
+  color: white;
+  height: 45px;
+}
+
+.errorP {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/*------------------------ About us style ------------------------*/
+
+.iniciaSesion2 {
+  text-shadow: 0.05em 0.07em var(--verdeM);
+  font-size: 2rem;
+  color: black;
+  font-family: "Gotham" !important;
+}
+
+.about-hr {
+  height: 2px;
+  width: 30%;
+  background-color: black;
+  border: none;
+}
+
+.img-avatar {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  border: 3px solid #5e8886;
+}
+
+.cardcarrito {
+  max-width: 90vw;
+  color: aliceblue !important;
+}
+/*------Media queries-------*/
+@media (min-width: 576px) {
+  .cardCateg {
+    display: flex;
+    justify-content: center;
+    width: 65vw;
+  }
+  .contImgC {
+    width: 55vw;
+    top: 1vh;
+    left: 3vw;
+  }
+  .imgC {
+    object-fit: contain;
+    width: 100%;
+    padding: 5px;
+    border-radius: 6%;
+  }
+  .cardConti {
+    width: 250px;
+    height: 250px;
+  }
+  #botonPedStick img {
+    width: 120px;
+    height: 120px;
+  }
+}
+@media (min-width: 768px) {
+  .cardCateg {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 37vw;
+  }
+  .contImgC {
+    width: 32vw;
+    top: 1vh;
+    justify-content: center;
+  }
+  .imgC {
+    object-fit: contain;
+    width: 100%;
+    padding: 5px;
+    border-radius: 6%;
+  }
+
+  .cardContainC {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-shrink: 1;
+  }
+  .cardConti {
+    width: 235px;
+    height: 235px;
+  }
+  .wrapper {
+    height: 420px;
+    width: 33vw;
+  }
+  .nombrePlato {
+    font-size: 1.8rem;
+  }
+  .precioPlato {
+    font-size: 2rem;
+    bottom: 17%;
+  }
+  .wrapper .card img {
+    height: 50%;
+  }
+  .wrapper .back-face {
+    font-size: 15px;
+  }
+  #botonPedStick img {
+    width: 120px;
+    height: 120px;
+  }
+  .imgC {
+    max-height: 60%;
+  }
+  .cardCatBod img {
+    margin-left: 10px;
+  }
+}
+@media (min-width: 1200px) {
+  .contImgC {
+    align-self: center;
+    margin-left: 0.7rem;
+  }
+  .cardConti {
+    width: 250px;
+    height: 250px;
+  }
+}
