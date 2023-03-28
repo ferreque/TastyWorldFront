@@ -1,7 +1,7 @@
 import React from "react";
 import Swal from "sweetalert2";
 
-const CardMenu = ({ menus, setContadorProductosFlag }) => {
+const CardMenu = ({ menus, menuBebidas, setContadorProductosFlag }) => {
   let lista = JSON.parse(localStorage.getItem("carrito")) || [];
   const agregarACarrito = async (prod) => {
     setContadorProductosFlag(true);
@@ -16,52 +16,104 @@ const CardMenu = ({ menus, setContadorProductosFlag }) => {
 
   return (
     <>
-      <div className="row  row-cols-md-3 row-cols-lg-4 g-4">
-        {menus.map((menu) => (
-          <div
-            className="col mt-2 mb-4 d-flex justify-content-center "
-            key={menu._id}
-          >
-            <div className=" wrapper">
-              <div className="card front-face">
-                <img
-                  src={menu.img}
-                  className="card-img-top"
-                  alt={menu.nombre}
-                />
-                <div className="card-body">
-                  <h5 className="card-title nombrePlato">{menu.nombre}</h5>
+      {menus ? (
+        <div className="row  row-cols-md-3 row-cols-lg-4 g-4">
+          {menus.map((menu) => (
+            <div
+              className="col mt-2 mb-4 d-flex justify-content-center "
+              key={menu._id}
+            >
+              <div className=" wrapper">
+                <div className="card front-face">
+                  <img
+                    src={menu.img}
+                    className="card-img-top"
+                    alt={menu.nombre}
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title nombrePlato">{menu.nombre}</h5>
 
-                  <strong>{menu.categoria}</strong>
+                    <strong>{menu.categoria}</strong>
+                    <div className="precioyBot">
+                      <h5 className="precioPlato text-center">
+                        ${menu.precio}
+                      </h5>
+                      <h2>{menu.pais}</h2>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="card back-face">
+                  <img src={menu.img} alt={menu.nombre} />
+                  <div className="info">
+                    <div className="title">
+                      <h4>{menu.nombre}</h4>
+                    </div>
+                    <p>{menu.descripcion}</p>
+                  </div>
                   <div className="precioyBot">
-                    <h5 className="precioPlato text-center">${menu.precio}</h5>
-                    <h2>{menu.pais}</h2>
+                    <h5>${menu.precio}</h5>
+                    <button
+                      className="btn btn-info botonAgrBa"
+                      onClick={() => agregarACarrito(menu)}
+                    >
+                      Agregar +
+                    </button>
                   </div>
-                </div>
-              </div>
-
-              <div className="card back-face">
-                <img src={menu.img} alt={menu.nombre} />
-                <div className="info">
-                  <div className="title">
-                    <h4>{menu.nombre}</h4>
-                  </div>
-                  <p>{menu.descripcion}</p>
-                </div>
-                <div className="precioyBot">
-                  <h5>${menu.precio}</h5>
-                  <button
-                    className="btn btn-info botonAgrBa"
-                    onClick={() => agregarACarrito(menu)}
-                  >
-                    Agregar +
-                  </button>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <div className="row  row-cols-md-3 row-cols-lg-4 g-4">
+          {menuBebidas.map((menuB) => (
+            <div
+              className="col mt-2 mb-4 d-flex justify-content-center "
+              key={menuB._id}
+            >
+              <div className=" wrapper">
+                <div className="card front-face">
+                  <img
+                    src={menuB.img}
+                    className="card-img-top"
+                    alt={menuB.nombre}
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title nombrePlato">{menuB.nombre}</h5>
+
+                    <strong>{menuB.categoria}</strong>
+                    <div className="precioyBot">
+                      <h5 className="precioPlato text-center">
+                        ${menuB.precio}
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="card back-face">
+                  <img src={menuB.img} alt={menuB.nombre} />
+                  <div className="info">
+                    <div className="title">
+                      <h4>{menuB.nombre}</h4>
+                    </div>
+                    <p>{menuB.descripcion}</p>
+                  </div>
+                  <div className="precioyBot">
+                    <h5>${menuB.precio}</h5>
+                    <button
+                      className="btn btn-info botonAgrBa"
+                      onClick={() => agregarACarrito(menuB)}
+                    >
+                      Agregar +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 };

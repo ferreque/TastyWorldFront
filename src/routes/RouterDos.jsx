@@ -8,10 +8,10 @@ import Cocina from "../pages/Cocina";
 import Barra from "../pages/Barra";
 import Entregas from "../pages/Entregas";
 import ComidasMundo from "../pages/ComidasMundo";
+import BebidasMundo from "../pages/BebidasMundo";
 import Carrito from "../pages/Carrito";
 import Administracion from "../components/Administracion";
 import Mozo from "../pages/Mozo";
-import Bebidas from "../pages/Bebidas.jsx";
 
 const RouterDos = () => {
   return (
@@ -26,13 +26,18 @@ const RouterDos = () => {
           path="/ComidasMundo/:continente"
           component={ComidasMundo}
         />
+        <Route exact path="/BebidasMundo" component={BebidasMundo} />
+        <Route
+          exact
+          path="/BebidasMundo/:continenteB"
+          component={BebidasMundo}
+        />
         <Route exact path="/carrito" component={Carrito} />
         <Route exact path="/Administracion" component={Administracion} />
         <Route exact path="/cocina" component={Cocina} />
         <Route exact path="/barra" component={Barra} />
         <Route exact path="/Entregas" component={Entregas} />
         <Route exact path="/mozo" component={Mozo} />
-        <Route exact path="/bebidas" component={Bebidas} />
       </Switch>
     </Router>
   );

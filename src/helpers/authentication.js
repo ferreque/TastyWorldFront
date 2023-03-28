@@ -1,5 +1,5 @@
-// const url = "http://localhost:4005/api";
-const url = "https://tasty-world-back.vercel.app/api";
+const url = "http://localhost:4005/api";
+// const url = "https://tasty-world-back.vercel.app/api";
 
 export const postAuth = async (data) => {
   const resp = await fetch(`${url}/auth/login`, {

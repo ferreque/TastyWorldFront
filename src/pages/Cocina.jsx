@@ -24,22 +24,24 @@ const Cocina = () => {
       setComandas(respuesta.comanda);
     });
     setComandaFlag(false);
-    // const intervalo = setInterval(() => {
-    //   getComandasCocina().then((respuesta) => {
-    //     setComandas(respuesta.comanda);
-    //   });
-    // }, 30000);
-    // return () => clearInterval(intervalo);
   }, [comandaFlag]);
+  console.log(comandas.length);
 
   return (
     <>
       <Container fluid className="mt-2 min-height">
-        <CardCocina
-          comandas={comandas}
-          comandaFlag={comandaFlag}
-          setComandaFlag={setComandaFlag}
-        />
+        {comandas.length > 0 ? (
+          <CardCocina
+            comandas={comandas}
+            comandaFlag={comandaFlag}
+            setComandaFlag={setComandaFlag}
+          />
+        ) : (
+          <>
+            <br />
+            <h1 className="m-5">NO HAY COMANDAS</h1>
+          </>
+        )}
       </Container>
     </>
   );

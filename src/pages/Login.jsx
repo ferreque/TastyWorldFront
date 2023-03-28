@@ -30,7 +30,7 @@ const Login = () => {
         : "/");
     const redireccion = () => user && history.push(ruta);
     redireccion();
-  }, );
+  });
 
   useEffect(() => {
     return () => {

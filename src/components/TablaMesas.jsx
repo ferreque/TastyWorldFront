@@ -2,6 +2,9 @@ import React from "react";
 import { mesasDelete, mesasPut } from "../helpers/mesas";
 
 const TablaMesas = ({ mesas, setMesasFlag }) => {
+  const user =
+    JSON.parse(localStorage.getItem("auth")) &&
+    JSON.parse(localStorage.getItem("auth")).usuario;
   const ocuparMesa = (id) => {
     let mesa = { estado: false };
     mesasPut(id, mesa).then((respuesta) => {
@@ -39,12 +42,16 @@ const TablaMesas = ({ mesas, setMesasFlag }) => {
                     >
                       Ocupar
                     </button>
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => deleteMesa(mesa.id)}
-                    >
-                      X
-                    </button>
+                    {user.rol === "ADMIN_ROLE" ? (
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => deleteMesa(mesa.id)}
+                      >
+                        X
+                      </button>
+                    ) : (
+                      ""
+                    )}
                   </td>
                 </tr>
               ))}

@@ -7,7 +7,6 @@ import {
   Button,
   ButtonToolbar,
 } from "react-bootstrap";
-import TimerComandas from "./TimerComandas";
 import { putComanda } from "../helpers/comandas";
 
 const token =

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Card, Container } from "react-bootstrap";
 import Slider from "react-slick";
 
-const CardContinente = ({ continentes }) => {
+const CardContinenteB = ({ listaBebidas }) => {
   const settings = {
     dots: false,
     infinite: false,
@@ -82,12 +82,12 @@ const CardContinente = ({ continentes }) => {
     <>
       <div className="d-flex justify-content-center">
         <Card className=" cardConti">
-          <Link style={{ textDecoration: "none" }} to={`/comidasmundo/`}>
+          <Link style={{ textDecoration: "none" }} to={`/bebidasmundo/`}>
             <Card.Body className="cardCont">
               <Card.Img
                 src="https://cdn-icons-png.flaticon.com/512/814/814513.png"
                 itemID="imgCon"
-                alt="Mundo"
+                alt="Drinks"
               />
               <h5 className="card-title text-center nombreCont">Todos</h5>
             </Card.Body>
@@ -96,17 +96,17 @@ const CardContinente = ({ continentes }) => {
       </div>{" "}
       <div>
         <Slider {...settings}>
-          {continentes.map((continente) => (
-            <Container className="d-flex flex-col" key={continente.nombre}>
+          {listaBebidas.map((bebida) => (
+            <Container className="d-flex flex-col" key={bebida.nombre}>
               <Card className="cardConti">
                 <Link
                   style={{ textDecoration: "none" }}
-                  to={`/comidasmundo/${continente.nombre}`}
+                  to={`/bebidasmundo/${bebida.nombre}`}
                 >
                   <Card.Img
-                    src={continente.img}
+                    src={bebida.img}
                     itemID="imgCon"
-                    alt={continente.nombre}
+                    alt={bebida.nombre}
                   />
                 </Link>
               </Card>
@@ -118,4 +118,4 @@ const CardContinente = ({ continentes }) => {
   );
 };
 
-export default CardContinente;
+export default CardContinenteB;

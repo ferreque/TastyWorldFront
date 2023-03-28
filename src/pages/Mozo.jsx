@@ -11,9 +11,10 @@ import TablaPedidos from "../components/TablaPedidos";
 const Mozo = () => {
   const token = JSON.parse(localStorage.getItem("auth")).token;
   const [mesas, setMesas] = useState([]);
-  const [mesasOcup, setMesasOcup] = useState([]);
+  const [mesasOcup, setMesasOcup] = useState(
+    JSON.parse(localStorage.getItem("mesas")) || []
+  );
   const [mesasFlag, setMesasFlag] = useState(false);
-  //pedidos
   const [pedidos, setPedidos] = useState([]);
   const state = { rol: "" };
 
@@ -45,6 +46,7 @@ const Mozo = () => {
           return mesa.estado === false;
         });
       setMesasOcup(ocupadas);
+      localStorage.setItem("mesas", JSON.stringify(ocupadas));
     });
     setMesasFlag(false);
   }, [mesasFlag]);

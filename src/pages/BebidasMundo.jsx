@@ -1,40 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
-import { getProductos } from "../helpers/productos";
-import CardContinente from "../components/CardContinente";
+import { getBebidas } from "../helpers/bebidas";
+import CardContinenteB from "../components/CardContinenteB";
 import BotonPedido from "../components/BotonPedido";
 import CardMenu from "../components/CardMenu";
 import { useParams, useHistory } from "react-router";
-import { getContinentes } from "../helpers/continentes";
+import { getContinentesB } from "../helpers/continentesB";
 
-const ComidasMundo = () => {
+const BebidasMundo = () => {
   const [contadorProductosFlag, setContadorProductosFlag] = useState(false);
   const history = useHistory();
   useEffect(() => {
-    getProductos(token).then((respuesta) => {
-      if (!respuesta.producto) {
-        localStorage.removeItem("auth");
-        history.push("/login");
-      }
+    getBebidas(token).then((respuesta) => {
+      console.log(respuesta);
     });
   }, []);
-  let { continente } = useParams();
+  let { continenteB } = useParams();
 
-  const [listaM, setListaM] = useState([]);
-  const [listaContinentes, setListaContinentes] = useState([]);
-  const [menus, setMenus] = useState([]);
+  const [listaB, setListaB] = useState([]);
+  const [listaBebidas, setListaBebidas] = useState([]);
+  const [menuBebidas, setMenuBebidas] = useState([]);
   const token =
     JSON.parse(localStorage.getItem("auth")) &&
     JSON.parse(localStorage.getItem("auth")).token;
   useEffect(() => {
-    getContinentes(token).then((respuesta) => {
-      setListaContinentes(respuesta.continente);
+    getContinentesB(token).then((respuesta) => {
+      setListaBebidas(respuesta.bebida);
     });
 
-    getProductos(token).then((respuesta) => {
-      let platos = respuesta.producto || [];
-      setListaM(platos);
-      setMenus(platos);
+    getBebidas(token).then((respuesta) => {
+      let tragos = respuesta.bebida || [];
+      setListaB(tragos);
+      setMenuBebidas(tragos);
     });
   }, []);
   const user =
@@ -46,37 +43,37 @@ const ComidasMundo = () => {
   }, []);
 
   useEffect(() => {
-    if (continente) {
+    if (continenteB) {
       let lista =
-        listaM &&
-        listaM.filter((menu) => {
-          return menu.continente === continente;
+        listaB &&
+        listaB.filter((menuB) => {
+          return menuB.continenteB === continenteB;
         });
-      setMenus(lista);
+      setMenuBebidas(lista);
     } else {
-      setMenus(listaM);
+      setMenuBebidas(listaB);
     }
-  }, [continente]);
+  }, [continenteB]);
 
   return (
     <>
       <Container
         fluid
-        className="inicioBackground min-height continentBackground pt-5 mt-5"
+        className="inicioBackground continentBackground  pt-5 mt-5"
       >
-        <h2 className="mb-3 tituloPag text-center pb-3">COMIDAS</h2>
+        <h1 className="tituloPag text-center  mb-5 ">BEBIDAS</h1>
 
         <Container fluid>
-          <CardContinente continentes={listaContinentes} />
+          <CardContinenteB listaBebidas={listaBebidas} />
         </Container>
 
         <Container fluid>
-          <h2 className="tituloPag text-center mt-4 pb-5">NUESTROS PLATOS</h2>
+          <h2 className="tituloPag text-center mt-4 pb-5">NUESTRAS BEBIDAS</h2>
           <h2 className="tituloPag text-center mb-4 pb-4">
-            {continente ? continente : "Todos"}
+            {continenteB ? continenteB : "Todas"}
           </h2>
           <CardMenu
-            menus={menus}
+            menuBebidas={menuBebidas}
             setContadorProductosFlag={setContadorProductosFlag}
           />
         </Container>
@@ -89,4 +86,4 @@ const ComidasMundo = () => {
   );
 };
 
-export default ComidasMundo;
+export default BebidasMundo;

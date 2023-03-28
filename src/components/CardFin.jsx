@@ -4,8 +4,12 @@ import { Form, Card, Container, Button } from "react-bootstrap";
 import { postComandaAdmin } from "../helpers/comandas";
 import { useHistory } from "react-router-dom";
 
-const CardFin = ({ pedidos, setPedidos, cargarCarrito, setLoadVisible }) => {
+const CardFin = ({ pedidos, setPedidos, setLoadVisible }) => {
+  const mesasOcup = JSON.parse(localStorage.getItem("mesas")) || [];
   const [mesa, setMesa] = useState();
+  let numMesasOcup = [];
+  mesasOcup.forEach((mesa) => numMesasOcup.push(mesa.numero));
+
   useEffect(() => {
     setLoadVisible(false);
   }, []);
@@ -28,7 +32,11 @@ const CardFin = ({ pedidos, setPedidos, cargarCarrito, setLoadVisible }) => {
 
   const confirmarPedido = () => {
     if (!mesa) {
-      window.alert("debe introducirr un numero de mesa");
+      window.alert("debe introducir un numero de mesa");
+    } else if (!numMesasOcup.includes(mesa)) {
+      window.alert(
+        "Numero de mesa invalido, consulte a un mesero su numero de mesa"
+      );
     } else {
       pedidos.forEach((pedido) => {
         let product = {
