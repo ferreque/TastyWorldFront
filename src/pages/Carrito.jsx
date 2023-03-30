@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Container } from "react-bootstrap";
 import CardFin from "../components/CardFin";
 import Loader from "react-loader-spinner";

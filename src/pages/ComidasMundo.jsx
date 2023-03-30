@@ -11,22 +11,25 @@ const ComidasMundo = () => {
   const [contadorProductosFlag, setContadorProductosFlag] = useState(false);
   const history = useHistory();
   useEffect(() => {
+    const token =
+      JSON.parse(localStorage.getItem("auth")) &&
+      JSON.parse(localStorage.getItem("auth")).token;
     getProductos(token).then((respuesta) => {
       if (!respuesta.producto) {
         localStorage.removeItem("auth");
         history.push("/login");
       }
     });
-  }, []);
+  }, [history]);
   let { continente } = useParams();
 
   const [listaM, setListaM] = useState([]);
   const [listaContinentes, setListaContinentes] = useState([]);
   const [menus, setMenus] = useState([]);
-  const token =
-    JSON.parse(localStorage.getItem("auth")) &&
-    JSON.parse(localStorage.getItem("auth")).token;
   useEffect(() => {
+    const token =
+      JSON.parse(localStorage.getItem("auth")) &&
+      JSON.parse(localStorage.getItem("auth")).token;
     getContinentes(token).then((respuesta) => {
       setListaContinentes(respuesta.continente);
     });
@@ -37,13 +40,13 @@ const ComidasMundo = () => {
       setMenus(platos);
     });
   }, []);
-  const user =
-    JSON.parse(localStorage.getItem("auth")) &&
-    JSON.parse(localStorage.getItem("auth")).usuario;
   useEffect(() => {
+    const user =
+      JSON.parse(localStorage.getItem("auth")) &&
+      JSON.parse(localStorage.getItem("auth")).usuario;
     const redireccion = () => user || history.push("/login");
     redireccion();
-  }, []);
+  }, [history]);
 
   useEffect(() => {
     if (continente) {
@@ -56,7 +59,7 @@ const ComidasMundo = () => {
     } else {
       setMenus(listaM);
     }
-  }, [continente]);
+  }, [continente, listaM]);
 
   return (
     <>

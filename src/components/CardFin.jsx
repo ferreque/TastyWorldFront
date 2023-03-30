@@ -12,7 +12,7 @@ const CardFin = ({ pedidos, setPedidos, setLoadVisible }) => {
 
   useEffect(() => {
     setLoadVisible(false);
-  }, []);
+  }, [setLoadVisible]);
 
   const token =
     JSON.parse(localStorage.getItem("auth")) &&

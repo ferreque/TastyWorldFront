@@ -10,23 +10,27 @@ import { getContinentesB } from "../helpers/continentesB";
 const BebidasMundo = () => {
   const [contadorProductosFlag, setContadorProductosFlag] = useState(false);
   const history = useHistory();
+  let { continenteB } = useParams();
+
+  const [listaB, setListaB] = useState([]);
+  const [listaBebidas, setListaBebidas] = useState([]);
+  const [menuBebidas, setMenuBebidas] = useState([]);
+
   useEffect(() => {
+    const token =
+      JSON.parse(localStorage.getItem("auth")) &&
+      JSON.parse(localStorage.getItem("auth")).token;
     getBebidas(token).then((respuesta) => {
       if (!respuesta.trago) {
         localStorage.removeItem("auth");
         history.push("/login");
       }
     });
-  }, []);
-  let { continenteB } = useParams();
-
-  const [listaB, setListaB] = useState([]);
-  const [listaBebidas, setListaBebidas] = useState([]);
-  const [menuBebidas, setMenuBebidas] = useState([]);
-  const token =
-    JSON.parse(localStorage.getItem("auth")) &&
-    JSON.parse(localStorage.getItem("auth")).token;
+  }, [history]);
   useEffect(() => {
+    const token =
+      JSON.parse(localStorage.getItem("auth")) &&
+      JSON.parse(localStorage.getItem("auth")).token;
     getContinentesB(token).then((respuesta) => {
       setListaBebidas(respuesta.bebida);
     });
@@ -37,13 +41,14 @@ const BebidasMundo = () => {
       setMenuBebidas(tragos);
     });
   }, []);
-  const user =
-    JSON.parse(localStorage.getItem("auth")) &&
-    JSON.parse(localStorage.getItem("auth")).usuario;
+
   useEffect(() => {
+    const user =
+      JSON.parse(localStorage.getItem("auth")) &&
+      JSON.parse(localStorage.getItem("auth")).usuario;
     const redireccion = () => user || history.push("/login");
     redireccion();
-  }, []);
+  }, [history]);
 
   useEffect(() => {
     if (continenteB) {
@@ -56,7 +61,7 @@ const BebidasMundo = () => {
     } else {
       setMenuBebidas(listaB);
     }
-  }, [continenteB]);
+  }, [continenteB, listaB]);
 
   return (
     <>

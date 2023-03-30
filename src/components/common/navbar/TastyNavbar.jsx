@@ -12,13 +12,13 @@ export const TastyNavbar = () => {
     JSON.parse(localStorage.getItem("auth")) &&
     JSON.parse(localStorage.getItem("auth")).usuario;
   const handleLogOut = () => {
-    setRender(false);
+    setRender(!render);
     localStorage.removeItem("auth");
     history.push("/login");
   };
 
   useEffect(() => {
-    setRender(!render);
+    setRender(true);
   }, [location.pathname]);
 
   const links = [

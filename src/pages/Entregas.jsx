@@ -7,7 +7,6 @@ import { Container } from "react-bootstrap";
 const Entrega = () => {
   const [comandas, setComandas] = useState([]);
 
-  const token = JSON.parse(localStorage.getItem("auth")).token;
   const history = useHistory();
 
   const user =
@@ -22,6 +21,7 @@ const Entrega = () => {
   });
 
   useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("auth")).token;
     getComandasEntregas(token).then((respuesta) => {
       setComandas(respuesta.comanda);
     });

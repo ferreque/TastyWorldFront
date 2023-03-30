@@ -9,7 +9,6 @@ import TablaComandas from "../components/TablaMesasOcup";
 import TablaPedidos from "../components/TablaPedidos";
 
 const Mozo = () => {
-  const token = JSON.parse(localStorage.getItem("auth")).token;
   const [mesas, setMesas] = useState([]);
   const [mesasOcup, setMesasOcup] = useState(
     JSON.parse(localStorage.getItem("mesas")) || []
@@ -19,16 +18,16 @@ const Mozo = () => {
   const state = { rol: "" };
 
   const history = useHistory();
-  const user =
-    JSON.parse(localStorage.getItem("auth")) &&
-    JSON.parse(localStorage.getItem("auth")).usuario;
 
   useEffect(() => {
+    const user =
+      JSON.parse(localStorage.getItem("auth")) &&
+      JSON.parse(localStorage.getItem("auth")).usuario;
     const redireccion = () =>
       (user && (user.rol === "WAITER_ROLE" || user.rol === "ADMIN_ROLE")) ||
       history.push("/login");
     redireccion();
-  }, []);
+  }, [history]);
 
   useEffect(() => {
     mesasGet().then((respuesta) => {
@@ -52,6 +51,7 @@ const Mozo = () => {
   }, [mesasFlag]);
 
   useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("auth")).token;
     getComandasEntregas(token).then((respuesta) => {
       setPedidos(respuesta.comanda);
     });

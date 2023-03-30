@@ -9,20 +9,19 @@ import {
 } from "react-bootstrap";
 import { putComanda } from "../helpers/comandas";
 
-const token =
-  JSON.parse(localStorage.getItem("auth")) &&
-  JSON.parse(localStorage.getItem("auth")).token;
-const pedidoRealizado = (id) => {
-  let comanda = { estado: "Realizado" };
-  putComanda(id, comanda, token);
-};
-
-const pedidoAnulado = (id) => {
-  let comanda = { estado: "Anulado" };
-  putComanda(id, comanda, token);
-};
-
 const CardBarra = ({ comandas }) => {
+  const token =
+    JSON.parse(localStorage.getItem("auth")) &&
+    JSON.parse(localStorage.getItem("auth")).token;
+  const pedidoRealizado = (id) => {
+    let comanda = { estado: "Realizado" };
+    putComanda(id, comanda, token);
+  };
+
+  const pedidoAnulado = (id) => {
+    let comanda = { estado: "Anulado" };
+    putComanda(id, comanda, token);
+  };
   return (
     <Row xs={1} md={5} className="mt-5 g-2">
       {comandas &&

@@ -6,10 +6,7 @@ import { Container } from "react-bootstrap";
 
 const Barra = () => {
   const [comandas, setComandas] = useState([]);
-  const token =
-    JSON.parse(localStorage.getItem("auth")) &&
-    JSON.parse(localStorage.getItem("auth")).token;
-
+  const [comandaFlag, setComandaFlag] = useState(false);
   const history = useHistory();
   const user =
     JSON.parse(localStorage.getItem("auth")) &&
@@ -17,21 +14,26 @@ const Barra = () => {
 
   useEffect(() => {
     const redireccion = () =>
-      (user && (user.rol === "WAITER_ROLE" || user.rol === "ADMIN_ROLE")) ||
+      (user && (user.rol === "CHEF_ROLE" || user.rol === "ADMIN_ROLE")) ||
       history.push("/login");
     redireccion();
-  }, );
+  });
 
   useEffect(() => {
-    getComandasBarra(token).then((respuesta) => {
+    getComandasBarra().then((respuesta) => {
       setComandas(respuesta.comanda);
     });
-  }, );
+    setComandaFlag(false);
+  }, [comandaFlag]);
 
   return (
     <>
       <Container fluid className="mt-2 min-height">
-        <CardBarra comandas={comandas} />
+        <CardBarra
+          comandas={comandas}
+          comandaFlag={comandaFlag}
+          setComandaFlag={setComandaFlag}
+        />
       </Container>
     </>
   );

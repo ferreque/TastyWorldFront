@@ -27,14 +27,11 @@ const Administracion = () => {
   const [comandaEditar, setComandaEditar] = useState({});
   const [usuarioEditar, setUsuarioEditar] = useState({});
 
-  const user =
-    JSON.parse(localStorage.getItem("auth")) &&
-    JSON.parse(localStorage.getItem("auth")).usuario;
   const token =
     JSON.parse(localStorage.getItem("auth")) &&
     JSON.parse(localStorage.getItem("auth")).token;
-  const history = useHistory();
 
+  const history = useHistory();
   const handleDeleteProducto = (product) => {
     Swal.fire({
       title: "¿Seguro que quieres eliminar el producto?",
@@ -66,6 +63,9 @@ const Administracion = () => {
   };
 
   useEffect(() => {
+    const token =
+      JSON.parse(localStorage.getItem("auth")) &&
+      JSON.parse(localStorage.getItem("auth")).token;
     getProductos(token).then((respuesta) => {
       setProducts({
         datos: respuesta.producto,
@@ -81,10 +81,13 @@ const Administracion = () => {
   }, [render]);
 
   useEffect(() => {
+    const user =
+      JSON.parse(localStorage.getItem("auth")) &&
+      JSON.parse(localStorage.getItem("auth")).usuario;
     const redireccion = () =>
       (user && user.rol === "ADMIN_ROLE") || history.push("/login");
     redireccion();
-  }, []);
+  }, [history]);
 
   const handleDeleteBebida = (bebida) => {
     Swal.fire({
@@ -117,6 +120,9 @@ const Administracion = () => {
   };
 
   useEffect(() => {
+    const token =
+      JSON.parse(localStorage.getItem("auth")) &&
+      JSON.parse(localStorage.getItem("auth")).token;
     getBebidas(token).then((respuesta) => {
       setBebidas({
         datos: respuesta.trago,
@@ -163,6 +169,9 @@ const Administracion = () => {
   };
 
   useEffect(() => {
+    const token =
+      JSON.parse(localStorage.getItem("auth")) &&
+      JSON.parse(localStorage.getItem("auth")).token;
     getComandas(token).then((respuesta) => {
       let todas = respuesta.comanda;
       let activas =

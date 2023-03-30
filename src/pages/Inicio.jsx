@@ -6,25 +6,25 @@ import { Parallax } from "react-parallax";
 import Imagen2 from "../assets/imagen2.svg";
 import { getProductos } from "../helpers/productos";
 const Inicio = () => {
-  const token = JSON.parse(localStorage.getItem("auth")).token;
-
-  const user =
-    JSON.parse(localStorage.getItem("auth")) &&
-    JSON.parse(localStorage.getItem("auth")).usuario;
   const history = useHistory();
 
   useEffect(() => {
+    const user =
+      JSON.parse(localStorage.getItem("auth")) &&
+      JSON.parse(localStorage.getItem("auth")).usuario;
     const redireccion = () => user || history.push("/login");
     redireccion();
-  }, []);
+  }, [history]);
   useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("auth")).token;
+
     getProductos(token).then((respuesta) => {
       if (!respuesta.producto) {
         localStorage.removeItem("auth");
         history.push("/login");
       }
     });
-  }, []);
+  }, [history]);
 
   return (
     <>

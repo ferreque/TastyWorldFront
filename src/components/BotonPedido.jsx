@@ -12,7 +12,7 @@ const BotonPedido = ({ setContadorProductosFlag, contadorProductosFlag }) => {
   useEffect(() => {
     setCantidad(productos);
     setContadorProductosFlag(false);
-  }, [contadorProductosFlag]);
+  }, [productos, contadorProductosFlag, setContadorProductosFlag]);
 
   return (
     <section>
