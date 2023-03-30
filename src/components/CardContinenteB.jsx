@@ -85,11 +85,11 @@ const CardContinenteB = ({ listaBebidas }) => {
           <Link style={{ textDecoration: "none" }} to={`/bebidasmundo/`}>
             <Card.Body className="cardCont">
               <Card.Img
-                src="https://cdn-icons-png.flaticon.com/512/814/814513.png"
+                src="https://cdn-icons-png.flaticon.com/512/2226/2226079.png"
                 itemID="imgCon"
                 alt="Drinks"
               />
-              <h5 className="card-title text-center nombreCont">Todos</h5>
+              <h5 className="card-title text-center nombreCont">Todas</h5>
             </Card.Body>
           </Link>
         </Card>

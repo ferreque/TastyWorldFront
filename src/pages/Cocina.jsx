@@ -25,7 +25,6 @@ const Cocina = () => {
     });
     setComandaFlag(false);
   }, [comandaFlag]);
-  console.log(comandas.length);
 
   return (
     <>

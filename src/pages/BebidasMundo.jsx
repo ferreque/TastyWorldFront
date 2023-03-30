@@ -12,7 +12,10 @@ const BebidasMundo = () => {
   const history = useHistory();
   useEffect(() => {
     getBebidas(token).then((respuesta) => {
-      console.log(respuesta);
+      if (!respuesta.trago) {
+        localStorage.removeItem("auth");
+        history.push("/login");
+      }
     });
   }, []);
   let { continenteB } = useParams();
@@ -29,7 +32,7 @@ const BebidasMundo = () => {
     });
 
     getBebidas(token).then((respuesta) => {
-      let tragos = respuesta.bebida || [];
+      let tragos = respuesta.trago || [];
       setListaB(tragos);
       setMenuBebidas(tragos);
     });

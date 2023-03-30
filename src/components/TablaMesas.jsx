@@ -7,9 +7,7 @@ const TablaMesas = ({ mesas, setMesasFlag }) => {
     JSON.parse(localStorage.getItem("auth")).usuario;
   const ocuparMesa = (id) => {
     let mesa = { estado: false };
-    mesasPut(id, mesa).then((respuesta) => {
-      console.log(respuesta);
-    });
+    mesasPut(id, mesa).then((respuesta) => {});
     setMesasFlag(true);
   };
 
