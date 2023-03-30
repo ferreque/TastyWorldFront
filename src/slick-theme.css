@@ -1,7 +1,5 @@
 @charset 'UTF-8';
-/* Slider */
 
-/* Arrows */
 .slick-prev,
 .slick-next {
   font-size: 0;
@@ -86,7 +84,6 @@
   content: "←";
 }
 
-/* Dots */
 .slick-dotted.slick-slider {
   margin-bottom: 30px;
 }
