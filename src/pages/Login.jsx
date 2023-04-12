@@ -33,6 +33,9 @@ const Login = () => {
   });
 
   useEffect(() => {
+    window.alert(
+      "Ecommerce prueba. Para ingresar como admin: admin@admin.com, como usuario user@user.com,como cocinero chef@chef.com, como mesero waiter@waiter.com, en todos los casos el password: 123456"
+    );
     return () => {
       isMounted.current = false;
     };
